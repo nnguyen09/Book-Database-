@@ -4,7 +4,7 @@
 </head>
 <body>
 <h1>Group 7 Bookstore</h1>
-<h2>Front page</h2>
+<h2 align = "center">Front page</h2>
 <h3>Login</h3>
 
 <!-- this php will lead to a page that has a login, and register
@@ -36,8 +36,9 @@ register will lead to a simple registration page, which when completed will lead
 accountmanager page.
 -->
 <form action="account.php" method="post">
+<table>
 <tr>
-  <td colspan="2" align="center"><input type="submit" value="Login/Account/Register"/></td>
+<td colspan="2" align="center"><input type="submit" value="Login/Account/Register"/></td>
 </tr>
 </table>
 </form>
@@ -47,34 +48,106 @@ accountmanager page.
 this page should let you add books of x quantity to your cart, 
 -->
 <form action="catalog.php" method="post">
-</tr>
+<table>
 <tr>
-  <td colspan="2" align="center"><input type="submit" value="Browse Catalog"/></td>
+<td colspan="2" align="center"><input type="submit" value="Browse Catalog"/></td>
 </tr>
 </table>
 </form>
 
-<h3>task 1</h3>
+<h3>Task 1</h3>
 <form action="task1.php" method="post">
+<table>
+    <tr>
+      <td>Email</td>
+      <td><input type="text" name="email_login"  minlength="3"/></td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td><input type="text" name="user_name"  minlength="3"/></td>
+    </tr>
+<tr>
+    <td>Password</td>
+    <td><input type="password" name="password" minlength="8"</td>
 </tr>
 <tr>
-  <td>Email</td>
-  <td align="left"><input type="text" name="email_login" size="20" maxlength="3"/></td>
-</tr>
-<tr>
-  <td>Password</td>
-  <td align="left"><input type="text" name="password" size="20" maxlength="3"/></td>
+  <td>Phone Number</td>
+  <td><input type="text" name="phone_number"  minlength="10"/></td>
 </tr>
 <tr>
   <td>Membership?</td>
-  <td align="left"><input type="checkbox" name="member" size="20" maxlength="3"/></td>
+  <td><input type="radio" name="member" value="yes"/>Yes</td>
+  <td><input type="radio" name="member" value="premium"/>Premium</td>
+  <td><input type="radio" name="member" value="no"/>No</td>
 </tr>
-<tr>
-  <td colspan="2" align="center"><input type="submit" value="Create account"/></td>
-</tr>
+</table>
+<input align ="center" type="submit" value="Create account"/>
+</form>
+
+<h3>Task 2</h3>
+<form action="task2.php" method="post">
+<table>
+    
 </table>
 </form>
 
+<h3>Task 3</h3>
+<form action="task3.php" method="post">
+<table>
+    
+</table>
+</form>
+
+<h3>Task 4</h3>
+<form action="task4.php" method="post">
+<table>
+    
+</table>
+</form>
+
+<h3>Task 5</h3>
+<form action="task5.php" method="post">
+<table>
+    
+</table>
+</form>
+
+<h3>Task 6</h3>
+<form action="task6.php" method="post">
+<table>
+    
+</table>
+</form>
+
+
+<h3>Task 7</h3>
+<form action="task7.php" method="post">
+<table>
+    
+</table>
+</form>
+
+<h3>Task 8</h3>
+<form action="task8.php" method="post">
+<table>
+    
+</table>
+</form>
+
+
+<h3>Task 9</h3>
+<form action="task9.php" method="post">
+<table>
+    
+</table>
+</form>
+
+<h3>Task 10</h3>
+<form action="task10.php" method="post">
+<table>
+    
+</table>
+</form>
 
 </body>
 </html>
