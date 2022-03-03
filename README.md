@@ -4,10 +4,10 @@
 >Submit at least one assignment out of 8 by March 3rd 2022
 ## Note for ourself
 1. On the home page we need to have 
-  a. login and signup button 
+  - a. login and signup button 
     - login -> (login.php) <br/>
     - signup -> (signup.php) <br/>
-  b. Search bar (use task4)<br/>
+  - b. Search bar (use task4)<br/>
 
 
 ### Task 4 technically a search engine 
