@@ -7,7 +7,7 @@
 >>>a. login and signup button 
 >>>>login -> (login.php) <br/>
 >>>>signup -> (signup.php) <br/>
->>b. Search bar (use task4)
+>>>b. Search bar (use task4)<bra/>
 
 
 ### Task 4 technically a search engine 
