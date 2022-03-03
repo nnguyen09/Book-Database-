@@ -4,5 +4,8 @@
 >Submit at least one assignment out of 8 by March 3rd 2022
 ## Note for ourself
 >>1. On the home page we need to have 
->>>a. login and register button
->>>b. 
+>>>a. login and signup button 
+>>>>login -> (login.php)
+>>>>signup -> (signup.php)
+>>>b. Search bar 
+>>>
