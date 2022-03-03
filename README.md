@@ -5,7 +5,10 @@
 ## Note for ourself
 >>1. On the home page we need to have 
 >>>a. login and signup button 
->>>>login -> (login.php)
->>>>signup -> (signup.php)
->>>b. Search bar 
->>>
+>>>>login -> (login.php) <br/>
+>>>>signup -> (signup.php) 
+>>>b. Search bar (use task4)
+
+
+###Task 4 technically a search engine 
+
