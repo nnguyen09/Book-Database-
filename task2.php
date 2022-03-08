@@ -16,16 +16,6 @@
 <?php
 	$myconnection = mysqli_connect('localhost', 'root', '')or die ('Could not connect: ' . mysql_error());
 	$mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
-	echo "<br>";
-	echo $pid;
-	echo "<br>";
-	echo $auid;
-	echo "<br>";
-	echo $btitle;
-	echo "<br>";
-	echo $bgenre;
-	echo "<br>";
-	$condition = '';
 	$money = 19.99;
 	$year = intval(date('Y'));
 	
