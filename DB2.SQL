@@ -206,11 +206,11 @@ values
 
 insert into book (book_id , year, genre , title , isbn, book_condition , price , book_type, total_rating ) 
 values 
-(1231, 1990, 'sci-fi', 'Star War', 8769674523245, 'renewed', 49.50, 'e-book', 4.5 ), 
-(7894, 2001, 'thriller', 'IT' , 2344589187312, 'new' , 39.99, 'hard_cover', 4.6),
-(8932, 1997, 'mystery' , 'The Haunting of The Hill House' , 8719958232345, 'old', 29.49, 'hard_cover',4.3) ,
-(2956, 2010, 'comedy', 'You' , 2891282361032, 'new' , 59.99,'e-book',3.9),
-(3891, 2020, 'romance' , 'The Notebook', 9827339278426, 'renewed',69.50, 'hard_cover',4.3 );
+(1231, 1990, 'sci-fi', 'Star War', '8769674523245', 'renewed', 49.50, 'e-book', 4.5 ), 
+(7894, 2001, 'thriller', 'IT' , '2344589187312', 'new' , 39.99, 'hard_cover', 4.6),
+(8932, 1997, 'mystery' , 'The Haunting of The Hill House' , '8719958232345', 'old', 29.49, 'hard_cover',4.3) ,
+(2956, 2010, 'comedy', 'You' , '2891282361032', 'new' , 59.99,'e-book',3.9),
+(3891, 2020, 'romance' , 'The Notebook', '9827339278426', 'renewed',69.50, 'hard_cover',4.3 );
 
 insert into users(email,name) 
 values 
