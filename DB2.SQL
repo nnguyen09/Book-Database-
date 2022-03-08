@@ -78,7 +78,7 @@ CREATE table book(
 	year int, 
 	genre char(40), 
 	title char(40), 
-	isbn int, 
+	isbn char(13), 
 	book_condition char(40), 
 	price decimal(10,2), 
 	book_type char(40), 
