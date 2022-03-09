@@ -17,11 +17,37 @@
   
   $query = 'select * from book';
   $result = mysqli_query($myconnection, $query) or die ('Query failed: ' . mysql_error());
+  $counter = 0;
+  
+ // echo 'name'.$counter;
+
+  echo "<form method = 'post' action = 'cart.php' >";
+  echo "<table>";
 
   while($row = mysqli_fetch_array($result)){
-	echo "Book ID:";
-	echo $row['book_id'];
-	echo "&nbsp;&nbsp;&nbsp;Year:";
+	$counter +=1;
+	$bookcounter = 'book'.$counter;
+	
+	echo "<tr><td>". htmlspecialchars($row['book_id']). "</td>";
+	echo "<td>". htmlspecialchars($row['year']). "</td>";
+	echo "<td>". htmlspecialchars($row['genre']). "</td>";
+	echo "<td>". htmlspecialchars($row['title']). "</td>";
+	echo "<td>". htmlspecialchars($row['isbn']). "</td>";
+	echo "<td>". htmlspecialchars($row['book_condition']). "</td>";
+	echo "<td>". htmlspecialchars($row['price']). "</td>";
+	echo "<td>". htmlspecialchars($row['book_type']). "</td>";
+	echo "<td>". htmlspecialchars($row['total_rating']). "</td>";
+	echo "<td>Quantity: <select name='$bookcounter'>
+    <option value='0(Delete)'></option>
+    <option value='1'>1</option>
+    <option value='2'>2</option>
+    <option value='3'>3</option>
+<option value='4'>4</option>
+<option value='5'>5</option>
+</select></td>";
+	echo "</tr>";
+             
+	/*echo "&nbsp;&nbsp;&nbsp;Year:";
 	echo $row['year'];
 	echo "&nbsp;&nbsp;&nbsp;Genre:";
 	echo $row['genre'];
@@ -38,10 +64,14 @@
 	echo "&nbsp;&nbsp;&nbsp;Total Rating:";
 	echo $row['total_rating'];
 	echo "&nbsp;&nbsp;&nbsp;";
-	echo "<br>";
+	echo "<br>";*/
   }
+  echo "</table>";
+  echo "<br><br>";
+  echo "<input align ='center' type='submit' value='Add to cart'/>"; 
+  echo "</form>";
 ?>
-<!-- This form should -->
+<!-- This form should 
 <h2>Order Books Based Off Order ID and Quantity Desired</h2>
 <form action="move_to_cart.php" method="post">
 <tr>
@@ -56,6 +86,6 @@
   <td colspan="2" align="center"><input type="submit" value="add to cart"/></td>
 </tr>
 </table>
-</form>
+</form>-->
 </body>
 </html>

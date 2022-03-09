@@ -1,52 +1,19 @@
+<!--
 <html>
 <head>
   <title>Group 7 Bookstore</title>
 </head>
 <body>
 <h1>Group 7 Bookstore</h1>
-<h2 align = "center">Front page</h2>
-<h3>Login</h3>
+<h2 align = "center">Home page</h2>
+<form action="login.php" method="post">
+  <table>
+  <tr>
+  <td colspan="2" align="center"><input type="submit" value="Login/Register"/></td>
+  </tr>
+  </table>
+  </form>
 
-<!-- this php will lead to a page that has a login, and register
-form of the type 
-<h3>Register</h3>
-<form action="register.php" method="post">
-<table border="0">
-<tr bgcolor="#cccccc">
-  <td width="150">Item</td>
-  <td width="15">Quantity</td>
-</tr>
-<tr>
-  <td>Email</td>
-  <td align="left"><input type="text" name="reg_email" size="3" maxlength="3"/></td>
-</tr>
-<tr>
-  <td>Password</td>
-  <td align="left"><input type="text" name="reg_passowrd" size="3" maxlength="3"/></td>
-</tr>
-<tr>
-  <td colspan="2" align="center"><input type="submit" value="Register"/></td>
-</tr>
-</table>
-</form>
-
-login will lead directly to an accountmanager.php which will 
-be an important junction point to handle queries 1,3,6, 7, and possibly 8 but unsure on that one.
-register will lead to a simple registration page, which when completed will lead to the same 
-accountmanager page.
--->
-<form action="account.php" method="post">
-<table>
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Login/Account/Register"/></td>
-</tr>
-</table>
-</form>
-
-
-<!-- this php will lead to a list of all books currently in the database
-this page should let you add books of x quantity to your cart, 
--->
 <form action="catalog.php" method="post">
 <table>
 <tr>
@@ -55,100 +22,39 @@ this page should let you add books of x quantity to your cart,
 </table>
 </form>
 
-<h3>Task 1</h3>
-<form action="task1.php" method="post">
-<table>
-    <tr>
-      <td>Email</td>
-      <td><input type="text" name="email_login"  minlength="3"/></td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td><input type="text" name="user_name"  minlength="3"/></td>
-    </tr>
-<tr>
-    <td>Password</td>
-    <td><input type="password" name="password" minlength="8"</td>
-</tr>
-<tr>
-  <td>Phone Number</td>
-  <td><input type="text" name="phone_number"  minlength="10"/></td>
-</tr>
-<tr>
-  <td>Membership?</td>
-  <td><input type="radio" name="member" value="yes"/>Yes</td>
-  <td><input type="radio" name="member" value="premium"/>Premium</td>
-  <td><input type="radio" name="member" value="no"/>No</td>
-</tr>
-</table>
-<input align ="center" type="submit" value="Create account"/>
-</form>
-
-<h3>Task 2</h3>
-<form action="task2.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 3</h3>
-<form action="task3.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 4</h3>
-<form action="task4.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 5</h3>
-<form action="task5.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 6</h3>
-<form action="task6.php" method="post">
-<table>
-    
-</table>
-</form>
-
-
-<h3>Task 7</h3>
-<form action="task7.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 8</h3>
-<form action="task8.php" method="post">
-<table>
-    
-</table>
-</form>
-
-
-<h3>Task 9</h3>
-<form action="task9.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 10</h3>
-<form action="task10.php" method="post">
-<table>
-    
-</table>
-</form>
-
 </body>
 </html>
-
+-->
+<html>
+	<head>
+		<title>Home page</title>
+	</head>
+  <body>
+    <font face="Cambria" size="4">
+    <frameset rows="30%,70%">
+      <frame name="home_page">
+        <table border="1" width="100%" cellpadding="5" align="center"> 
+          <tr>
+            <td align="center"><img src="logo.png" width="50%" height="80"/></td> 
+            <td colspan="4" align="center"><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
+          </tr>
+          <tr>
+            <td align="center"> <a href="bookstore.html" >HOME</a></td> 
+            <td align="center"> <a href="login.php" >LOGIN/SIGNUP</a></td> 
+            <td align="center"><a href="catalog.php" >CATALOGUE</a></td> 
+            <td align="center" ><a href="cart.php" >CART</a></td>
+            <td align="center"> <a href="logout.php" >LOGOUT</a></td>
+          </tr>
+        </table>
+      </frame>
+          <br><br>
+          <center><b><i>WELCOME TO OUR ONLINE BOOKSTORE</i></b></center>
+          <br><br>
+      <frame name="desc_page">
+          <img src="bg.png" width="100%"/>
+      </frame>
+	    
+    </frameset>  
+    </font>
+  </body>
+</html>
