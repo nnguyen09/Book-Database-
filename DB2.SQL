@@ -75,7 +75,7 @@ CREATE table payment(
 
 CREATE table book( 
 	book_id int, 
-	book_year int, 
+	year int, 
 	genre char(40), 
 	title char(40), 
 	isbn char(13), 

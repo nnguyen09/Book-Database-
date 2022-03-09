@@ -3,8 +3,6 @@
   <title>Publishing Book</title>
 </head>
 <body>
-<h1>Books Published</h1>
-
 <h3>Task 2</h3>
 <form action="task2.php" method="post">
 <table>
@@ -26,11 +24,11 @@
 </tr>
 <tr>
 	<td>ISBN</td>
-	<td><input type="text" name="isbn"  minlength="13" maxlength="13" required/></td>
+	<td><input type="text" name="isbn" minlength="13" maxlength="13" required/></td>
 </tr>
 <tr>
 	<td>Types Avaliable(applies to all books)</td>  
-	<td><input type="checkbox" name="book_type[]" value="e_book" required/>E-Book</td>
+	<td><input type="checkbox" name="book_type[]" value="e_book" />E-Book </td>
 	<td><input type="checkbox" name="book_type[]" value="hard_cover"/>Hard Cover</td>
 	<td><input type="checkbox" name="book_type[]" value="paper_back"/>Paper Back</td>
 </tr>
