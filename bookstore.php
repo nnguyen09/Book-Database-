@@ -7,6 +7,16 @@
 <h2 align = "center">Home page</h2>
 
 <?php
+session_start();
+
+
+/*
+add an if statement that checks if $_SESSION['email'] = admin_email
+and if it does add
+
+echo <td align='center'> <a href='change_shipping_costs.php' >Change Shipping Costs</a></td> 
+into the href options
+*/
 echo " <html>
 <head>
   <title>Home page</title>
@@ -23,10 +33,11 @@ echo " <html>
         <tr>
           <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS <input type ='text' name ='year'/><input type ='submit'/></form></a></td> 
           <td align='center'> <a href='login.php' >LOGIN/SIGNUP</a></td> 
-          <td align='center'><a href='catalog.php' >CATALOGUE</a></td> 
+		   <td align='center'><a href='catalog.php' >CATALOGUE</a></td> 
           <td align='center' ><a href='cart.php' >CART</a></td>
           <td align='center'> <a href='task4_searchbook.html' >SEARCH</a></td>
           <td align='center' ><a href='publish.php' >ADD BOOKS</a></td>
+		  <td align='center' ><a href='logout.php' >Logout</a></td>
         </tr>
       </table>
     </frame>
@@ -44,12 +55,12 @@ echo " <html>
 ";
 ?>
 <?php 
-echo "before start<br>";
-session_start();
-echo "after start<br>";
-$_SESSION["email"] = $_GET['email'];
+//echo "before start<br>";
 
-echo $_SESSION['email'];
+//echo "after start<br>";
+echo $_SESSION["email"];
+
+//echo $_SESSION['email'];
 
 if(!isset($_SESSION["email"])){
   header("bookstore.html");
