@@ -41,7 +41,9 @@ if($membership == 'yes'){
     $qu3 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','55.00', '$password')";
     
     if(mysqli_query($myconnection, $qu3)){
-            echo "Registered as a Memeber";
+            echo "Registered as a Member";
+            header("Location: bookstore.php");
+     
         }
     else{
         echo "Error3" . $qu3 ."<br>" . mysqli_error($myconnection);
@@ -53,6 +55,8 @@ if($membership == 'premium'){
     $qu4 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','75.00', '$password')";
     if(mysqli_query($myconnection, $qu4)){
             echo "Registered as a premium member";
+            header("Location: bookstore.php");
+     
         }
     else{
         echo "Error4" . $qu4 ."<br>" . mysqli_error($myconnection);
@@ -64,6 +68,8 @@ if($membership == 'no'){
     $qu5 = "INSERT INTO non_member (email,name,phone_number,password) values ('$email' ,'$name','$phone_number', '$password')";
     if(mysqli_query($myconnection, $qu5)){
             echo "Registered as a non_member";
+            header("Location: bookstore.php");
+     
         }
     else{
         echo "Error5" . $qu5 ."<br>" . mysqli_error($myconnection);

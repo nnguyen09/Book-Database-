@@ -39,7 +39,8 @@
 		$qauid = "SELECT * FROM author where author_id = '" .mysqli_real_escape_string($myconnection, $auid) . "'";
 		$result = mysqli_query($myconnection, $qauid);
 		if(mysqli_num_rows($result) == 1){
-
+              
+		//	 echo "fail1";
 			//Checking if the book title is allready in use (book of the same title cannot exsist in database to proceed)
 			$qtitle = "SELECT * FROM book where title = '" .mysqli_real_escape_string($myconnection, $btitle) . "'";
 			$result = mysqli_query($myconnection, $qtitle);
@@ -47,6 +48,9 @@
 				
 				//Iterating through book types
 				if(!empty($_POST['book_type'])){
+
+					 
+			             // echo "fail2";
 					foreach($_POST['book_type'] as $type){
 						
 						//Checking book types and setting price accordingly
@@ -61,12 +65,23 @@
 						$result = mysqli_query($myconnection, $qtestid);
 						}while(mysqli_num_rows($result) != 0);
 									
+ 
+						//echo "fail3";
+
 						//Finally inserting into book, wrote, and publish tables
-						$qfinal = "INSERT INTO book (book_id,year,genre,title,isbn,book_condition,price,book_type, total_rating) values ('$bid','$year','$bgenre','$btitle','$isbn', 'new', '$money','$type', '0.0')";
+						$qfinal = "INSERT INTO `book` (`book_id`, `book_year`, `genre`, `title`, `isbn`, `book_condition`, `price`, `book_type`, `total_rating`) VALUES ('$bid','$year','$bgenre','$btitle','$isbn', 'new', '$money','$type', '0.0')";
+						 
+						//echo $qfinal;
+
 						if(mysqli_query($myconnection, $qfinal)){echo "Inserted new book<br>";}
+						
+						//echo "fail4";
+
 						$qfinal1 = "insert into published (publisher_id,book_id) values ('$pid','$bid')";
+					//	echo $qfinal1;
 						if(mysqli_query($myconnection, $qfinal1)){echo "Inserted new published<br>";}
 						$qfinal2 = "insert into wrote (author_id,book_id) values ('$auid','$bid')";
+					//	echo $qfinal2;
 						if(mysqli_query($myconnection, $qfinal2)){echo "Inserted new wrote<br>";}
 					}
 				}

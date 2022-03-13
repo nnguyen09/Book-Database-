@@ -26,7 +26,7 @@
 
   while($row = mysqli_fetch_array($result)){
 	$counter +=1;
-	$bookcounter = 'book'.$counter;
+	$bookcounter = htmlspecialchars($row['book_id']);
 	
 	echo "<tr><td>". htmlspecialchars($row['book_id']). "</td>";
 	echo "<td>". htmlspecialchars($row['year']). "</td>";
@@ -38,7 +38,7 @@
 	echo "<td>". htmlspecialchars($row['book_type']). "</td>";
 	echo "<td>". htmlspecialchars($row['total_rating']). "</td>";
 	echo "<td>Quantity: <select name='$bookcounter'>
-    <option value='0(Delete)'></option>
+    <option value='0'></option>
     <option value='1'>1</option>
     <option value='2'>2</option>
     <option value='3'>3</option>
