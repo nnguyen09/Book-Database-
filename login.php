@@ -1,4 +1,3 @@
-
 <html>
 <head>
   <title>Create account</title>
@@ -7,6 +6,7 @@
 <h2 align='center'>Login Page</h2>
 <br><br>
 <?php 
+session_start();
   check_Login_Info($_POST);
 
 ?>
@@ -29,9 +29,11 @@
 </form>
 <?php
   
-  function check_Login_Info($array){
+  function check_Login_Info($array)
+ {
 
     $email = $array['email'];
+	$_SESSION['email'] = $array['email'];
     $password = $array['password'];
     $submit = $array['submit'];
   $mc = mysqli_connect('localhost', 'root', '')
@@ -45,8 +47,10 @@
   $r1 = mysqli_query($mc, $q1);
   $r2 = mysqli_query($mc, $q2);
 
-  if(mysqli_num_rows($r1) == 0){
-      if(mysqli_num_rows($r2) == 0){
+  if(mysqli_num_rows($r1) == 0)
+  {
+      if(mysqli_num_rows($r2) == 0)
+	  {
          // echo "Error, neither memeber or non member";
           if(($email!='' )&&($password!=''))
           {
@@ -54,14 +58,22 @@
           //  header("Location: create_account.php");
           }
       }
-      else{
+      else
+	  {
         //echo "They are a member";
+		if(isset($_SESSION['email']))
+		{
         header("Location: bookstore.php?email=".$email );
+		}
       }
   }
-  else{
-   // echo "They are a non-member";
-   header("Location: bookstore.php?email=".$email);
+  else
+  {
+   // echo "They are a non-member";	
+		if(isset($_SESSION['email']))
+		{
+        header("Location: bookstore.php?email=".$email );
+		}
   }
 }
 ?>
