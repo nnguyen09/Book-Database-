@@ -1,4 +1,4 @@
-CREATE database bookstore;
+CREATE DATABASE IF NOT EXISTS bookstore;
 USE bookstore;
 
 CREATE table users(
