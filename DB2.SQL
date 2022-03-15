@@ -96,22 +96,16 @@ CREATE table shipping_address(
 );
 
 CREATE table cart(
-	O_id char(40), 
+	cart_id int, 
 	user_email char(40), 
-	shipping_address char(40), 
-	shipping_zip char(10), 
-	shipping_state char(40), 
-	shipping_country char(40),
 	item_cost decimal(10,2), 
 	shipping_cost decimal(10,2), 
 	tax decimal(10,2), 
 	total_cost decimal(10,2),
 	book_quantity int, 
 	date_of_purchase date, 
-	primary key(shipping_address,shipping_zip,shipping_state,shipping_country),
-	foreign key(user_email) references users(email),
-	foreign key(O_id) references orders(order_id),
-	foreign key(shipping_address,shipping_zip, shipping_state, shipping_country) references shipping_address(address,zip,state,country)
+	primary key(cart_id),
+	foreign key(user_email) references users(email)
 );
 
 
@@ -180,6 +174,13 @@ CREATE TABLE stores (
 	foreign key(shipping_address,shipping_zip, shipping_state, shipping_country) references shipping_address(address,zip,state,country)
 );
 
+CREATE TABLE hold (
+	cart_id int,
+	book_id int,
+	foreign key(cart_id) references cart(cart_id),
+	foreign key(book_id) references book(book_id)
+);
+	
 INSERT into publisher (publisher_name, publisher_id, url, address)
 VALUES
 ('Penguin','A001', 'www.coolbooks.com', '40 Main Street, NY'), 
