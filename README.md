@@ -20,4 +20,12 @@
 ### Task 8: 
   1. create a rating.php
   2. add a button (rating) to bookstore.php to lead into rating.php 
+
+### Task 3: 
+  create_account.php
+
+### Extra feature: 
+ 1. Modifying the order of the book in cart before confirming it (view_cart.php) 
+
+
  
