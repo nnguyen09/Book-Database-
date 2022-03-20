@@ -8,7 +8,10 @@
 
 <?php
 session_start();
+$admin_check = $_SESSION['email'];
+if($admin_check == 'admin@gmail.com'){
 
+}
 
 /*
 add an if statement that checks if $_SESSION['email'] = admin_email
@@ -30,12 +33,13 @@ echo " <html>
           <td><!--<img src='logo.png'>--> </td> 
           <td colspan='5' align='center'><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
         </tr>
-        <tr>
-          <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS <input type ='text' name ='year'/><input type ='submit'/></form></a></td> 
+        <tr>";
+if($admin_check == 'admin@gmail.com'){echo "<td align='center'> <a href='superuser.php' >Secret Super User Button</a></td> ";}
+        echo" <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS <input type ='text' name ='year'/><input type ='submit'/></form></a></td> 
           <td align='center'> <a href='login.php' >LOGIN/SIGNUP</a></td> 
-		   <td align='center'><a href='catalog.php' >CATALOGUE</a></td> 
-          <td align='center' ><a href='cart.php' >CART</a></td>
-          <td align='center'> <a href='task4_searchbook.html' >SEARCH</a></td>
+		      <td align='center'><a href='catalog.php' >CATALOGUE</a></td>
+          <td align='center' ><a href='view_cart.php' >CART</a></td>
+          <td align='center'> <a href='task4.php' >SEARCH</a></td>
           <td align='center' ><a href='publish.php' >ADD BOOKS</a></td>
 		  <td align='center' ><a href='logout.php' >Logout</a></td>
         </tr>

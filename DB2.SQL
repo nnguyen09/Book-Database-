@@ -1,6 +1,7 @@
 CREATE DATABASE IF NOT EXISTS bookstore;
 USE bookstore;
 
+
 CREATE table users(
 	email char(40), 
 	name char(40), 
@@ -236,10 +237,11 @@ values
 ('Au002', 'carolinek@gmail.com','Caroline Kepnes'), 
 ('Au003', 'jkrowling@gmail.com','J.K Rowling');
 
-insert into cart(O_id , user_email, shipping_address , shipping_zip, shipping_state , shipping_country, item_cost, shipping_cost , tax , total_cost,book_quantity, date_of_purchase)
+insert into cart(cart_id , user_email,  item_cost, shipping_cost , tax , total_cost,book_quantity, date_of_purchase)
 values
-('O001','likhitha@gmail.com','123 Middlesex St, Lowell', '01850', 'MA', 'United States', 50.00, 8.00, 3.00, 61.00, 1, '2021-02-12'),
-('O002','nnguyen@gmail.com','22 Lowell St, Peabody', '01960', 'MA', 'United States', 55.00, 9.00, 4.00, 178.00, 3, '2021-04-16');
+(001,'likhitha@gmail.com', 50.00, 8.00, 3.00, 61.00, 1, '2021-02-12'),
+(002,'nnguyen@gmail.com', 55.00, 9.00, 4.00, 178.00, 3, '2021-04-16'),
+(003,'zackk@gmail.com', 0, 0, 0, 5, 0, '2021-04-16');
 
 insert into customer(email,name,phone_number) 
 values 

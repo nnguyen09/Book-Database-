@@ -7,8 +7,7 @@
 <br><br>
 <?php 
 session_start();
-  check_Login_Info($_POST);
-
+check_Login_Info($_POST);
 ?>
 <form action = "" method="post">
         <table align='center'>
