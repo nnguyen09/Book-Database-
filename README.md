@@ -27,5 +27,10 @@
 ### Extra feature: 
  1. Modifying the order of the book in cart before confirming it (view_cart.php) 
 
+### note Mar 20
+  1. when you create an account, create a cart in database that associate with that account 
+  2. For superuser modication of shipping cost: add shipping_cost entity that cart has a foreign key to 
+  
+
 
  

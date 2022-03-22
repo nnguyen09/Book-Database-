@@ -50,16 +50,13 @@ check_Login_Info($_POST);
   {
       if(mysqli_num_rows($r2) == 0)
 	  {
-         // echo "Error, neither memeber or non member";
           if(($email!='' )&&($password!=''))
           {
             echo "<i>Invalid Email address Or Password</i>";
-          //  header("Location: create_account.php");
           }
       }
       else
 	  {
-        //echo "They are a member";
 		if(isset($_SESSION['email']))
 		{
         header("Location: bookstore.php?email=".$email );
@@ -68,7 +65,6 @@ check_Login_Info($_POST);
   }
   else
   {
-   // echo "They are a non-member";	
 		if(isset($_SESSION['email']))
 		{
         header("Location: bookstore.php?email=".$email );
@@ -85,3 +81,12 @@ check_Login_Info($_POST);
 
 </body>
 </html>
+<?php
+
+echo "<form action ='bookstore.html' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
+echo "</p>";
+?>

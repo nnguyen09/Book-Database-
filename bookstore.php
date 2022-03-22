@@ -12,14 +12,6 @@ $admin_check = $_SESSION['email'];
 if($admin_check == 'admin@gmail.com'){
 
 }
-
-/*
-add an if statement that checks if $_SESSION['email'] = admin_email
-and if it does add
-
-echo <td align='center'> <a href='change_shipping_costs.php' >Change Shipping Costs</a></td> 
-into the href options
-*/
 echo " <html>
 <head>
   <title>Home page</title>
@@ -35,13 +27,13 @@ echo " <html>
         </tr>
         <tr>";
 if($admin_check == 'admin@gmail.com'){echo "<td align='center'> <a href='superuser.php' >Secret Super User Button</a></td> ";}
-        echo" <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS <input type ='text' name ='year'/><input type ='submit'/></form></a></td> 
-          <td align='center'> <a href='login.php' >LOGIN/SIGNUP</a></td> 
-		      <td align='center'><a href='catalog.php' >CATALOGUE</a></td>
+echo" <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS (by year) <input type ='text' name ='year'/><input type ='submit' value = 'Search'/></form></a></td> 
+          <td align='center'> <a><form method = 'POST' action = 'task4_searchbook.php'>Book Search <input type ='text' name ='search'/><input type ='submit' value = 'Search'/></form></a></td> 
+          <td align='center'><a href='catalog.php' >CATALOGUE</a></td>
           <td align='center' ><a href='view_cart.php' >CART</a></td>
-          <td align='center'> <a href='task4.php' >SEARCH</a></td>
-          <td align='center' ><a href='publish.php' >ADD BOOKS</a></td>
-		  <td align='center' ><a href='logout.php' >Logout</a></td>
+          <td align='center' ><a href='account.php' >ACCOUNT</a></td>
+          <td align='center' ><a href='history.php' >ORDER HISTORY</a></td>
+		  <td align='center' ><a href='logout.php' >LOGOUT</a></td>
         </tr>
       </table>
     </frame>
@@ -59,12 +51,6 @@ if($admin_check == 'admin@gmail.com'){echo "<td align='center'> <a href='superus
 ";
 ?>
 <?php 
-//echo "before start<br>";
-
-//echo "after start<br>";
-echo $_SESSION["email"];
-
-//echo $_SESSION['email'];
 
 if(!isset($_SESSION["email"])){
   header("bookstore.html");
@@ -72,14 +58,11 @@ if(!isset($_SESSION["email"])){
 
 if($_GET){
         $user_email = $_GET['email'];
-        //$password = $_GET['password'];
          
         $myconnection = mysqli_connect('localhost', 'root', '') 
         or die ('Could not connect: ' . mysql_error());
       
         $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
-       
-       // $queryAuthor = "Select title from book where book_id in(select book_id from wrote where author_id in(select author_id from author where email ='"mysqli_real_escape_string($myconnection, $user_email) . "'";
         $query1 = "SELECT name FROM users where email = '" .mysqli_real_escape_string($myconnection, $user_email) . "'";
         
         $result1 = mysqli_query($myconnection, $query1) or die ('Query failed: ' . mysql_error());
@@ -95,13 +78,11 @@ if($_GET){
     else{
         "Could not get email";
     }
-
 ?>
 
 
 
 <?php
- 
  $author_email = $_GET['email'];
   $myconnection = mysqli_connect('localhost', 'root', '') 
     or die ('Could not connect: ' . mysql_error());
@@ -109,10 +90,7 @@ if($_GET){
   $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
 
   $e1 = "SELECT name FROM author where email = '" .mysqli_real_escape_string($myconnection, $author_email) . "'";
-  //echo "$e1";
 
-  //$q1 = "Select * from member where email = '$author_email' ";
-  //echo "$q1";
   $re1 = mysqli_query($myconnection, $e1);
 
 
@@ -158,7 +136,6 @@ echo "<br><br>";
 echo "<p align ='center'><input type='submit' value='Add to cart'/></p>"; 
 echo "</form>";
 
-echo "<br><br>Successful";
 
   }
 
@@ -166,8 +143,6 @@ echo "<br><br>Successful";
   $query = 'SELECT * FROM book';
   $result = mysqli_query($myconnection, $query) or die ('Query failed: ' . mysql_error());
   $counter = 0;
-
-     // echo 'name'.$counter;
 
   echo "<form method = 'post' action = 'cart.php' >";
   echo "<table>";
@@ -205,151 +180,6 @@ echo "<br><br>";
 echo "<p align ='center'><input type='submit' value='Add to cart'/></p>"; 
 echo "</form>";
   }
-
-
-  //echo "$re1";
-  //echo "hello1";
- /* if(mysqli_num_rows($re1) != ''){
-    echo "hello2";
-    }
-    else{
-      echo"hello3";
-    }    
-   */    
-     	/*echo "&nbsp;&nbsp;&nbsp;Year:";
-	echo $row['year'];
-	echo "&nbsp;&nbsp;&nbsp;Genre:";
-	echo $row['genre'];
-	echo "&nbsp;&nbsp;&nbsp;Title:";
-	echo $row['title'];
-	echo "&nbsp;&nbsp;&nbsp;ISBN:";
-	echo $row['isbn'];
-	echo "&nbsp;&nbsp;&nbsp;Book Condition:";
-	echo $row['book_condition'];
-	echo "&nbsp;&nbsp;&nbsp;Price:";
-	echo $row['price'];
-	echo "&nbsp;&nbsp;&nbsp;Book Types:";
-	echo $row['book_type'];
-	echo "&nbsp;&nbsp;&nbsp;Total Rating:";
-	echo $row['total_rating'];
-	echo "&nbsp;&nbsp;&nbsp;";
-	echo "<br>";*/
-  
-  
 ?>
 </body>
 </html>
-
-<!-- this php will lead to a page that has a login, and register
-form of the type 
-<h3>Register</h3>
-<form action="register.php" method="post">
-<table border="0">
-<tr bgcolor="#cccccc">
-  <td width="150">Item</td>
-  <td width="15">Quantity</td>
-</tr>
-<tr>
-  <td>Email</td>
-  <td align="left"><input type="text" name="reg_email" size="3" maxlength="3"/></td>
-</tr>
-<tr>
-  <td>Password</td>
-  <td align="left"><input type="text" name="reg_passowrd" size="3" maxlength="3"/></td>
-</tr>
-<tr>
-  <td colspan="2" align="center"><input type="submit" value="Register"/></td>
-</tr>
-</table>
-</form>
-
-login will lead directly to an accountmanager.php which will 
-be an important junction point to handle queries 1,3,6, 7, and possibly 8 but unsure on that one.
-register will lead to a simple registration page, which when completed will lead to the same 
-accountmanager page.
--->
-<!--
-<form action="login.php" method="post">
-<table>
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Login/Register"/></td>
-</tr>
-</table>
-</form>
--->
-
-<!-- this php will lead to a list of all books currently in the database
-this page should let you add books of x quantity to your cart, 
--->
-        
-
-<!--<h3>Task 2</h3>
-<form action="task2.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 3</h3>
-<form action="task3.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 4</h3>
-<form action="task4.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 5</h3>
-<form action="task5.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 6</h3>
-<form action="task6.php" method="post">
-<table>
-    
-</table>
-</form>
-
-
-<h3>Task 7</h3>
-<form action="task7.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 8</h3>
-<form action="task8.php" method="post">
-<table>
-    
-</table>
-</form>
-
-
-<h3>Task 9</h3>
-<form action="task9.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 10</h3>
-<form action="task10.php" method="post">
-<table>
-    
-</table>
-</form>
--->
-
-
-
-
-

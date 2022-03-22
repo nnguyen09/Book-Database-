@@ -1,30 +1,3 @@
-<!--
-<html>
-<head>
-  <title>Group 7 Bookstore</title>
-</head>
-<body>
-<h1>Group 7 Bookstore</h1>
-<h2 align = "center">Home page</h2>
-<form action="login.php" method="post">
-  <table>
-  <tr>
-  <td colspan="2" align="center"><input type="submit" value="Login/Register"/></td>
-  </tr>
-  </table>
-  </form>
-
-<form action="catalog.php" method="post">
-<table>
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Browse Catalog"/></td>
-</tr>
-</table>
-</form>
-
-</body>
-</html>
--->
 <html>
 	<head>
 		<title>Home page</title>
@@ -39,10 +12,10 @@
             <td colspan="5" align="center"><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
           </tr>
           <tr>
-            <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS <input type ='text' name ='year'/><input type ='submit'/></form></a></td> 
-            <td align="center"> <a href="login.php" >LOGIN/SIGNUP</a></td> 
+            <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS (by year) <input type ='text' name ='year'/><input type ='submit' value = 'Search'/></form></a></td> 
+            <td align='center'> <a><form method = 'POST' action = 'task4_searchbook.php'>Book Search <input type ='text' name ='search'/><input type ='submit' value = 'Search'/></form></a></td> 
+			<td align="center"> <a href="login.php" >LOGIN/SIGNUP</a></td> 
             <td align="center"><a href="catalog.php" >CATALOGUE</a></td> 
-            <td align="center"> <a href="task4.php" >SEARCH</a></td>
             <td align="center" ><a href="publish.php" >ADD BOOKS</a></td>
           </tr>
         </table>

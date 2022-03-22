@@ -9,8 +9,8 @@ $myconnection = mysqli_connect('localhost', 'root', '')
   $cartq="select cart_id from cart where user_email = '$email'";
   $rcart = mysqli_query($myconnection, $cartq) or die ('Query failed: ' . mysql_error());
 //grabbing cart id
-while ($row = mysqli_fetch_array ($rcart, MYSQLI_ASSOC)) {$cart = $row["cart_id"];}
-  foreach($_POST as $book_quantity => $value)
+$cart = mysqli_fetch_array ($rcart, MYSQLI_ASSOC)["cart_id"];
+ foreach($_POST as $book_quantity => $value)
   {
     if($value != 0)
     {
@@ -41,6 +41,13 @@ while ($row = mysqli_fetch_array ($rcart, MYSQLI_ASSOC)) {$cart = $row["cart_id"
   echo "<input type='submit' value='Confirm Purchase' size ='20' />"; 
   echo "</form>";
   echo "</p>";
+  echo "<form action ='bookstore.php' method= 'post'>";
+  echo "<table>";
+  echo "<input type='submit' value='Main Menu' />"; 
+  echo "</table>";
+  echo "</form>";
+  echo "</p>";
+
 }
 else{header("Location: login.php");}
 

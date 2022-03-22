@@ -39,4 +39,11 @@ echo "
 </html>
 
 ";
+
+echo "<form action ='bookstore.html' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
+echo "</p>";
 ?>

@@ -1,14 +1,11 @@
 <?php
 session_start();
-$email = $_SESSION['email'];
- $myconnection = mysqli_connect('localhost', 'root', '') 
-  or die ('Could not connect: ' . mysql_error());
-
-  $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
-  $cartq="select cart_id from cart where user_email = '$email'";
-  $rcart = mysqli_query($myconnection, $cartq) or die ('Query failed: ' . mysql_error());
-
-  while ($row = mysqli_fetch_array ($rcart, MYSQLI_ASSOC)) {$cart = $row["cart_id"];}
+$email =$_SESSION['email'];  
+$myconnection = mysqli_connect('localhost', 'root', '') or die ('Could not connect: ' . mysql_error());
+$mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
+$cartq="select cart_id from cart where user_email = '$email'";
+$rcart = mysqli_query($myconnection, $cartq) or die ('Query failed: ' . mysql_error());  
+$cart = mysqli_fetch_array ($rcart, MYSQLI_ASSOC)["cart_id"];
 
   $get_cart_books = "select * from book where book_id in(select book_id from hold where cart_id ='$cart')";
  $get_quantity_of_book = "select count(book_id) as b_count from hold where cart_id = '$cart' group by book_id";
@@ -50,12 +47,12 @@ echo "<table>";
 echo "</table>";
   echo "</form>";
   echo "</p>";
-  echo "<form action ='bookstore.php' method= 'post'>";
+echo "<form action ='bookstore.php' method= 'post'>";
 echo "<table>";
-  echo "<input type='submit' value='Main Menu' />"; 
+echo "<input type='submit' value='Main Menu' />"; 
 echo "</table>";
-  echo "</form>";
-  echo "</p>";
+echo "</form>";
+echo "</p>";
 
 
 ?>
