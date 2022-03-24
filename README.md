@@ -6,7 +6,7 @@
   1. Add a button in bookstore.php that lead to AccountManagement.php
   2. Inside of AccountManagement.php, we can update user name,  member status, and payment method 
 ### change grab table name to bought()
-### Task 3 (needed to complete)
+### Task 3 (needed to complete)//Completed
 ### Thing to add to order.php 
   1. Handle input from comfirmpurchase.php
   2. Calculate the total cost of all the book in the cart
@@ -19,15 +19,15 @@
 
 ### Task 8: 
   1. create a rating.php
-  2. add a button (rating) to bookstore.php to lead into rating.php 
+  2. add a button (rating) to bookstore.php to lead into rating.php (Resolved)
 
 ### Task 3: 
-  create_account.php
+  create_account.php (Resolved)
 
 ### Extra feature: 
  1. Modifying the order of the book in cart before confirming it (view_cart.php) 
 
-### note Mar 20
+### note Mar 20. (Done)
   1. when you create an account, create a cart in database that associate with that account 
   2. For superuser modication of shipping cost: add shipping_cost entity that cart has a foreign key to 
   
