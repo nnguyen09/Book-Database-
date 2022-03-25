@@ -14,12 +14,12 @@ $r2 = mysqli_query($myconnection, $q2);
 
 
 
- echo "<form method = 'post' action = 'cart.php' >";
+ echo "<form method = 'post' action = 'process_review.php' >";
  echo "<table>";
 
 
 while($row = mysqli_fetch_array($r2)){
-    $book_counter = htmlspecialchars($row['book_id']);
+    $rating = htmlspecialchars($row['book_id']);
   	$row2 = mysqli_fetch_array($r1)["quantity"];
 
     // to make it shows only author books add a query that checks author email to check if he is a customer
@@ -35,14 +35,7 @@ while($row = mysqli_fetch_array($r2)){
     echo "<td>". htmlspecialchars($row['price']). "</td>";
     echo "<td>". htmlspecialchars($row['book_type']). "</td>";
     echo "<td>". htmlspecialchars($row['total_rating']). "</td>";
-    echo "<td>Quantity: <select name='$book_counter'>
-      <option value='0'></option>
-      <option value='1'>1</option>
-      <option value='2'>2</option>
-      <option value='3'>3</option>
-  <option value='4'>4</option>
-  <option value='5'>5</option>
-  </select></td>";
+    echo "<td><input type='submit' name = '$rating'  value='Rate this book'/></td>";
     echo "</tr>";
 
 }
@@ -57,4 +50,5 @@ echo "<input type='submit' value='Main Menu' />";
 echo "</table>";
 echo "</form>";
 echo "</p>";
+
 ?>

@@ -23,7 +23,7 @@ echo " <html>
       <table border='1' width='100%' cellpadding='5' align='center'> 
         <tr>
           <td><!--<img src='logo.png'>--> </td> 
-          <td colspan='5' align='center'><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
+          <td colspan='7' align='center'><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
         </tr>
         <tr>";
 if($admin_check == 'admin@gmail.com'){echo "<td align='center'> <a href='superuser.php' >Secret Super User Button</a></td> ";}
@@ -33,6 +33,7 @@ echo" <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BES
           <td align='center' ><a href='view_cart.php' >CART</a></td>
           <td align='center' ><a href='account.php' >ACCOUNT</a></td>
           <td align='center' ><a href='history.php' >ORDER HISTORY</a></td>
+          <td align='center' ><a href='rating.php' >RATE BOOKS ORDERED</a></td>
 		  <td align='center' ><a href='logout.php' >LOGOUT</a></td>
         </tr>
       </table>

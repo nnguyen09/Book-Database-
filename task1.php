@@ -56,7 +56,7 @@ else{
 
 
 if($membership == 'yes'){
-    $qu3 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','55.00', '$password')";
+    $qu3 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','20.00', '$password')";
     
     if(mysqli_query($myconnection, $qu3)){
             echo "Registered as a Member";
@@ -71,7 +71,7 @@ if($membership == 'yes'){
 }
 
 if($membership == 'premium'){
-    $qu4 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','75.00', '$password')";
+    $qu4 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','50.00', '$password')";
     if(mysqli_query($myconnection, $qu4)){
             echo "Registered as a premium member";
 			$_SESSION['email'] = $email;
