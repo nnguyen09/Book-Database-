@@ -44,7 +44,7 @@ if(mysqli_num_rows(mysqli_query($myconnection, $check_card)) == 0)
 	$check_card = "select * from payment where card_number = '$card_number'";
 	if(mysqli_num_rows(mysqli_query($myconnection, $check_card)) == 0)
 	{
-		$card_insert = "insert into payment(card_number, card_type, exp_date, cvv_code, billing_address) values ('$card_number','$card_type','$exp_date','$cvv_code','$card_address')";
+		$card_insert = "insert into payment(card_number, card_type, exp_date, cvv_code, billing_address) values ('$card_number','$card_type','$cvv_code','$exp_date','$card_address')";
 		
 		$r = mysqli_query($myconnection, $card_insert);
 	}
@@ -86,7 +86,7 @@ if(mysqli_num_rows(mysqli_query($myconnection, $check_address)) == 0)
 	while ($row = mysqli_fetch_array ($result1, MYSQLI_ASSOC)) 
 	{
 		$book = $row["book_id"];
-		$bought_insert = "insert into grab (order_id, book_id) values ('$o_id','$book')";
+		$bought_insert = "insert into grab (order_id, book_id,year_bought) values ('$o_id','$book',$date)";
 		$add = mysqli_query($myconnection, $bought_insert);
 	}
 		$remove_from_hold = "delete from hold where cart_id = '$cart'";
