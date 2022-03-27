@@ -14,26 +14,26 @@ echo "
 <table>
     <tr>
     <td>Shipping Address          </td>
-    <td><label>Address:</label><input type='text' name='address'  minlength='3' required/></td>
-    <td><label>Zip:</label><input type='text' name='zip' minlength='3' required/></td>
-    <td><label>State:</label><input type='text' name='state'  minlength='3' required/></td>
-    <td><label>Country:</label><input type='text' name='country'   minlength='3' required/></td>
+    <td><label>Address:</label><input type='text' name='address'  required/></td>
+    <td><label>Zip:</label><input type='text' name='zip'  required/></td>
+    <td><label>State:</label><input type='text' name='state'   required/></td>
+    <td><label>Country:</label><input type='text' name='country'  required/></td>
     </tr>
 
       <tr>
       <td>Card Info          </td>   
-      <td><label>Card Number:</label><input type='text' name='card_number'  minlength='3' required/></td>
-      <td><label>Card Type</label><input type='text' name='card_type' minlength='3' required/></td>
-      <td><label>CVV Code</labeil><input type='text' name='cvv_code'  minlength='3' required/></td>
+      <td><label>Card Number:</label><input type='text' name='card_number' maxlength='16' required/></td>
+      <td><label>Card Type</label><input type='text' name='card_type' required/></td>
+      <td><label>CVV Code</labeil><input type='password' name='cvv_code'  size='3' required/></td>
       <td><label>Exp Date</label><input type='text' name='exp_date'   minlength='3' required/></td>
       </tr>
 
       <tr>
       <td>Billing Address                  </td>
-      <td><label>Address:</label><input type='text' name='card_address'  minlength='3'/></td>
-      <td><label>Zip:</label><input type='text' name='card_zip' minlength='3' /></td>
-      <td><label>State:</label><input type='text' name='card_state'  minlength='3' /></td>
-      <td><label>Country:</label><input type='text' name='card_country'   minlength='3' /></td>
+      <td><label>Address:</label><input type='text' name='card_address' /></td>
+      <td><label>Zip:</label><input type='text' name='card_zip'  /></td>
+      <td><label>State:</label><input type='text' name='card_state' /></td>
+      <td><label>Country:</label><input type='text' name='card_country' /></td>
       </tr>
 
 <tr>

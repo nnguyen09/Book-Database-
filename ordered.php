@@ -38,28 +38,34 @@ $cart = mysqli_fetch_array ($rcart, MYSQLI_ASSOC)["cart_id"];
 
 //If the number of rows is equal to 0 then the card is not yet associated with customer
 $check_card = "select * from have where email = '$email' and card_number = '$card_number'";
+//echo "$check_card";
 if(mysqli_num_rows(mysqli_query($myconnection, $check_card)) == 0)
 {
+	//echo "hello1";
 	//If the number of rows is 0 then the card is not in the database at all yet
 	$check_card = "select * from payment where card_number = '$card_number'";
 	if(mysqli_num_rows(mysqli_query($myconnection, $check_card)) == 0)
 	{
-		$card_insert = "insert into payment(card_number, card_type, exp_date, cvv_code, billing_address) values ('$card_number','$card_type','$cvv_code','$exp_date','$card_address')";
+		//echo "hello3";
+		$card_insert = "insert into payment(card_number, card_type, exp_date, cvv_code, billing_address) values ('$card_number','$card_type','$exp_date','$cvv_code','$card_address')";
 		
 		$r = mysqli_query($myconnection, $card_insert);
 	}
+	
 	$customer_has_card_insert = "insert into have(email, card_number) values ('$email', '$card_number')";
-	$r = mysqli_query($myconnection, $customer_has_card_insert);
-
+        $r = mysqli_query($myconnection, $customer_has_card_insert);
+ 
+	//echo "$customer_has_card_insert";
 }
+//echo "hello2";
 
 //Similar to above if it returns zero then that means this address is not yet associated with this customer and should be added
-$check_address = "select * from stores where email = '$email' and shipping_address = '$address'
- and shipping_zip = '$zip' and shipping_state = '$state' and shipping_country = '$country'";
+$check_address = "select * from stores where email = '$email' and shipping_address = '$address' and shipping_zip = '$zip' and shipping_state = '$state' and shipping_country = '$country'";
+//echo "$check_address";
 if(mysqli_num_rows(mysqli_query($myconnection, $check_address)) == 0)
 {
-	$check_address = $check_address = "select * from shipping_address where address = '$address'
- and zip = '$zip' and state = '$state' and country = '$country'";
+	//echo "hello";
+	$check_address = $check_address = "select * from shipping_address where address = '$address' and zip = '$zip' and state = '$state' and country = '$country'";
 	if(mysqli_num_rows(mysqli_query($myconnection, $check_address)) == 0)
 	{
 		$address_insert = "insert into shipping_address(address, zip, state, country) values ('$address', '$zip', '$state', '$country')";
@@ -82,11 +88,12 @@ if(mysqli_num_rows(mysqli_query($myconnection, $check_address)) == 0)
 	$result = mysqli_query($myconnection, $order_insert);
 
 	$books_purchased_from_cart = "select book_id from hold where cart_id = '$cart'";
+	//echo "$books_purchased_from_cart";
 	$result1 = mysqli_query($myconnection, $books_purchased_from_cart);
 	while ($row = mysqli_fetch_array ($result1, MYSQLI_ASSOC)) 
 	{
 		$book = $row["book_id"];
-		$bought_insert = "insert into grab (order_id, book_id,year_bought) values ('$o_id','$book',$date)";
+		$bought_insert = "insert into grab (order_id, book_id,year_bought) values ('$o_id','$book','$date')";
 		$add = mysqli_query($myconnection, $bought_insert);
 	}
 		$remove_from_hold = "delete from hold where cart_id = '$cart'";
@@ -104,7 +111,7 @@ if(mysqli_num_rows(mysqli_query($myconnection, $check_address)) == 0)
 		if(mysqli_query($myconnection, $q_update_cart_total)){}
 		
 
-echo "Order:  ".$o_id."  Processed succsefully";
+echo "Order:  ".$o_id."  Processed successfully";
 echo "<br>";
 echo "<form action ='bookstore.php' method= 'post'>";
 echo "<table>";

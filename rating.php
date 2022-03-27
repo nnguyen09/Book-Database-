@@ -16,6 +16,16 @@ $r2 = mysqli_query($myconnection, $q2);
 
  echo "<form method = 'post' action = 'process_review.php' >";
  echo "<table>";
+echo "<tr><td></td><td> BOOK_ID </td>";
+echo "<td> Published </td>";
+echo "<td> Genre </td>";
+echo "<td> Title </td>";
+echo "<td> ISBN </td>";
+echo "<td> Condition </td>";
+echo "<td> Price </td>";
+echo "<td> Type </td>";
+echo "<td> Total Rating </td></tr>";
+
 
 
 while($row = mysqli_fetch_array($r2)){

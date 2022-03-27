@@ -23,13 +23,14 @@ echo " <html>
       <table border='1' width='100%' cellpadding='5' align='center'> 
         <tr>
           <td><!--<img src='logo.png'>--> </td> 
-          <td colspan='7' align='center'><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
+          <td colspan='8' align='center'><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
         </tr>
         <tr>";
 if($admin_check == 'admin@gmail.com'){echo "<td align='center'> <a href='superuser.php' >Secret Super User Button</a></td> ";}
 echo" <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS (by year) <input type ='text' name ='year'/><input type ='submit' value = 'Search'/></form></a></td> 
           <td align='center'> <a><form method = 'POST' action = 'task4_searchbook.php'>Book Search <input type ='text' name ='search'/><input type ='submit' value = 'Search'/></form></a></td> 
-          <td align='center'><a href='catalog.php' >CATALOGUE</a></td>
+          <td align='center'> <a><form method = 'POST' action = 'reviews_of_book.php'>Getting User Ratings <input type ='text' name ='title'/><input type ='submit' value = 'Search'/></form></a></td> 
+		  <td align='center'><a href='catalog.php' >CATALOGUE</a></td>
           <td align='center' ><a href='view_cart.php' >CART</a></td>
           <td align='center' ><a href='account.php' >ACCOUNT</a></td>
           <td align='center' ><a href='history.php' >ORDER HISTORY</a></td>
@@ -104,6 +105,15 @@ if($_GET){
 
   echo "<form method = 'post' action = 'cart.php' >";
   echo "<table>";
+echo "<tr><td> BOOK_ID </td>";
+echo "<td> Published </td>";
+echo "<td> Genre </td>";
+echo "<td> Title </td>";
+echo "<td> ISBN </td>";
+echo "<td> Condition </td>";
+echo "<td> Price </td>";
+echo "<td> Type </td>";
+echo "<td> Total Rating </td></tr>";
 
 
   while($row = mysqli_fetch_array($a_result)){
@@ -147,6 +157,16 @@ echo "</form>";
 
   echo "<form method = 'post' action = 'cart.php' >";
   echo "<table>";
+
+echo "<tr><td> BOOK_ID </td>";
+echo "<td> Published </td>";
+echo "<td> Genre </td>";
+echo "<td> Title </td>";
+echo "<td> ISBN </td>";
+echo "<td> Condition </td>";
+echo "<td> Price </td>";
+echo "<td> Type </td>";
+echo "<td> Total Rating </td></tr>";
 
 
   while($row = mysqli_fetch_array($result)){

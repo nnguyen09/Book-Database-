@@ -96,17 +96,22 @@ CREATE table shipping_address(
 	primary key(address,zip,state,country)
 );
 
+CREATE Table shipping_modes(
+	shipping_type char(20),
+	shipping_cost decimal (10,2),
+	primary key(shipping_type)
+);
+
+
 CREATE table cart(
 	cart_id int, 
 	user_email char(40), 
 	item_cost decimal(10,2), 
-	shipping_cost decimal(10,2), 
+	shipping_type char(20), 
 	tax decimal(10,2), 
-	total_cost decimal(10,2),
-	book_quantity int, 
-	date_of_purchase date, 
 	primary key(cart_id),
-	foreign key(user_email) references users(email)
+	foreign key(user_email) references users(email),
+	foreign key(shipping_type) references shipping_modes(shipping_type)
 );
 
 
@@ -191,46 +196,30 @@ VALUES
 ('The Guardian','A004', 'www.wackyComics.com', '88 Tom Street, CN'),
 ('Pearson','A005', 'www.cheapbooks.com', '33 Street, MA');
 
-INSERT into orders (order_id ,order_date)
-VALUES
-('O001', '2021-02-12'),
-('O002', '2021-04-16'),
-('O003', '2021-01-17'),
-('O004', '2021-07-19'),
-('O005', '2021-12-13');
 
-insert into payment (card_number , card_type, exp_date, cvv_code , billing_address)
-values
-('786954324156', 'debit', '2025-12-01', 278, '22 White St, MA'),
-('954378624156', 'credit', '2022-12-31', 371, '89 Middlesex St, NH'),
-('415654322396', 'debit', '2023-11-21', 498, '213 Marshall St, CA'),
-('198295437862', 'credit', '2028-09-21', 176, '91 University Ave, TX'),
-('543289764156', 'debit', '2026-05-11', 421, '292 Pawtucket St, LA');
 
 insert into book (book_id , year, genre , title , isbn, book_condition , price , book_type, total_rating ) 
 values 
-(1231, 1990, 'sci-fi', 'Star War', '8769674523245', 'renewed', 49.50, 'e-book', 4.5 ), 
-(7894, 2001, 'thriller', 'IT' , '2344589187312', 'new' , 39.99, 'hard_cover', 4.6),
-(8932, 1997, 'mystery' , 'The Haunting of The Hill House' , '8719958232345', 'old', 29.49, 'hard_cover',4.3) ,
-(2956, 2010, 'comedy', 'You' , '2891282361032', 'new' , 59.99,'e-book',3.9),
-(3891, 2020, 'romance' , 'The Notebook', '9827339278426', 'renewed',69.50, 'hard_cover',4.3 );
+(1, 1990, 'sci-fi', 'Star War', '8769674523245', 'renewed', '49.50', 'e-book', '4.00'),
+(2, 2001, 'thriller', 'IT', '2344589187312', 'new', '39.99', 'hard_cover', '4.60'),
+(3, 1997, 'mystery', 'The Haunting of The Hill House', '8719958232345', 'old', '29.49', 'hard_cover', '4.30'),
+(4, 2010, 'comedy', 'You', '2891282361032', 'new', '59.99', 'e-book', '3.90'),
+(5, 2020, 'romance', 'The Notebook', '9827339278426', 'renewed', '69.50', 'hard_cover', '4.30');
+
 
 insert into users(email,name) 
 values 
-('likhitha@gmail.com','Likhitha Patel'),
-('nnguyen@gmail.com','Ngan Nguyen'),
-('zackk@gmail.com','Zachary Pelley'),
-('carolinek@gmail.com','Caroline Kepnes'),
-('stephenk@gmail.com','Stephen King'),
-('jkrowling@gmail.com','J.K Rowling'),
-('iper.pfeffer@buckridge.com','Owen Houston'),
-('roxane.johns@turner.com','Raiden Simpson'),
-('marvin.wendell@yahoo.com','Cooper Gibson');
+('admin@gmail.com', 'Super User'),
+('carolinek@gmail.com', 'Caroline Kepnes'),
+('Fake2@gmail.com', 'Fake Boy 2'),
+('fake@gmail.com', 'A person'),
+('jkrowling@gmail.com', 'J.K Rowling'),
+('likhitha@gmail.com', 'Likhitha Patel'),
+('nnguyen@gmail.com', 'Ngan Nguyen'),
+('stephenk@gmail.com', 'Stephen King'),
+('Zack@gmail.com', 'z23'),
+('zackk@gmail.com', 'Zachary Pelley');
 
-insert into shipping_address(address,zip,state,country) 
-values
-('123 Middlesex St, Lowell', '01850' , 'MA', 'United States'),
-('22 Lowell St, Peabody', '01960', 'MA', 'United States');
 
 insert into author(author_id,email,name) 
 values 
@@ -238,69 +227,59 @@ values
 ('Au002', 'carolinek@gmail.com','Caroline Kepnes'), 
 ('Au003', 'jkrowling@gmail.com','J.K Rowling');
 
-insert into cart(cart_id , user_email,  item_cost, shipping_cost , tax , total_cost,book_quantity, date_of_purchase)
+insert into shipping_modes(shipping_type,shipping_cost)
 values
-(001,'likhitha@gmail.com', 50.00, 8.00, 3.00, 61.00, 1, '2021-02-12'),
-(002,'nnguyen@gmail.com', 55.00, 9.00, 4.00, 178.00, 3, '2021-04-16'),
-(003,'zackk@gmail.com', 0, 0, 0, 5, 0, '2021-04-16');
+('standard',0.00);
+
+insert into cart(cart_id , user_email,  item_cost, shipping_type , tax)
+values
+(1, 'likhitha@gmail.com', '0.00', 'standard', '3.00'),
+(2, 'nnguyen@gmail.com', '0.00', 'standard', '4.00'),
+(3, 'zackk@gmail.com', '0.00', 'standard', '5.00'),
+(4, 'carolinek@gmail.com', '0.00', 'standard', '5.00'),
+(5, 'stephenk@gmail.com', '0.00', 'standard', '5.00'),
+(6, 'jkrowling@gmail.com', '0.00', 'standard', '5.00'),
+(7, 'admin@gmail.com', '0.00', 'standard', '5.00');
 
 insert into customer(email,name,phone_number) 
 values 
-('likhitha@gmail.com', 'Likhitha Patel', '617-900-1010'), 
-('nnguyen@gmail.com', 'Ngan Nguyen','978-908-9699'),
-('carolinek@gmail.com','Caroline Kepnes','895-345-1231'),
-('zackk@gmail.com','Zachary Pelley ','515-282-4698');
+('likhitha@gmail.com', 'Likhitha Patel', '617-900-1010'),
+('nnguyen@gmail.com', 'Ngan Nguyen', '978-908-9699'),
+('carolinek@gmail.com', 'Caroline Kepnes', '895-345-1231'),
+('zackk@gmail.com', 'Zachary Pelley', '111-111-1111'),
+('stephenk@gmail.com', 'Stepehen King', '778-496-0716'),
+('jkrowling@gmail.com', 'J.K Rowling', '519-702-0534'),
+('admin@gmail.com', 'Super User', '111-111-1111');
 
-insert into grab(order_id,book_id)
-values
-('O001',1231),
-('O002',8932);
 
 insert into member(email,name,phone_number,member_fee,password) 
 values
-('likhitha@gmail.com','Likitha Patel','617-900-1010',30.00,'cigolisnotlogic'),
-('nnguyen@gmail.com','Ngan Nguyen','978-908-9699','99.99','ngan123456'),
-('zackk@gmail.com','Zachary Pelley','515-282-4698','59.99','zpzpzp');
+('likhitha@gmail.com', 'Likitha Patel', '617-900-1010', '30.00', 'cigolisnotlogic'),
+('nnguyen@gmail.com', 'Ngan Nguyen', '978-908-9699', '99.99', 'ngan123456'),
+('zackk@gmail.com', 'Zachary Pelley', '515-282-4698', '50.00', 'zpzpzp'),
+('admin@gmail.com', 'Super User', '111-111-1111', '0.00', '12345678');
+
 
 insert into non_member(email,name,phone_number,password) 
 values
-('iper.pfeffer@buckridge.com','Owen Houston','432-384-8266','3dc69c88'),
-('roxane.johns@turner.com','Raiden Simpson','778-496-0716','a96333d8'),
-('marvin.wendell@yahoo.com','Cooper Gibson','519-702-0534','decad56f');
+('carolinek@gmail.com', 'Caroline Kepnes', '895-345-1231', '3dc69c88'),
+('stephenk@gmail.com', 'Stepehen King', '778-496-0716', '123456789'),
+('jkrowling@gmail.com', 'J.K Rowling', '519-702-0534', 'decad56f');
 
-insert into history (email, order_id)
-values
-('likhitha@gmail.com','O001'),
-('nnguyen@gmail.com','O002');
 
 insert into wrote(author_id,book_id)
 values
-('Au001',1231),
-('Au002',8932);
+('Au001', 1),
+('Au002', 2),
+('Au003', 3),
+('Au001', 4),
+('Au002', 5);
 
-insert into rate(cus_comment ,rating , book_id ,email)
-values
-('This books great',4, 1231,'likhitha@gmail.com' ),
-('One of the interesting books I have ever read',4, 2956,'zackk@gmail.com' ),
-('Great book. Helpful',3, 8932,'nnguyen@gmail.com' );
 
 insert into published(publisher_id , book_id)
 values
-('A001',1231),
-('A003',8932);
-
-insert into have(email, card_number)
-values
-('likhitha@gmail.com','786954324156'),
-('nnguyen@gmail.com','543289764156');
-
-insert into stores(email, shipping_address , shipping_zip, shipping_state , shipping_country)
-values
-('likhitha@gmail.com','123 Middlesex St, Lowell', '01850', 'MA', 'United States'),
-('nnguyen@gmail.com','22 Lowell St, Peabody', '01960', 'MA', 'United States');
-
-insert into purchased(amount_pay, order_id, card_number)
-values
-(61.00,'O001','786954324156'),
-(178.00,'O002','543289764156');
-
+('A001', 1),
+('A002', 2),
+('A003', 3),
+('A001', 4),
+('A002', 5);

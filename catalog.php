@@ -19,6 +19,16 @@ session_start();
   echo "<form method = 'post' action = 'cart.php' >";
   echo "<table>";
 
+echo "<tr><td> BOOK_ID </td>";
+echo "<td> Published </td>";
+echo "<td> Genre </td>";
+echo "<td> Title </td>";
+echo "<td> ISBN </td>";
+echo "<td> Condition </td>";
+echo "<td> Price </td>";
+echo "<td> Type </td>";
+echo "<td> Total Rating </td></tr>";
+
   while($row = mysqli_fetch_array($result)){
 
 	$bookcounter = htmlspecialchars($row['book_id']);
