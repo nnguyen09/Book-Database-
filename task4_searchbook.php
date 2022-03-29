@@ -28,11 +28,26 @@ session_start();
 	 
 	 //if it returns any rows then it means they put an genre as an input
 	 if(mysqli_num_rows($result) > 0){}
-	 else{}
+	 else{
+		 //if it gets here it means they didnt enter in a key work
+		 echo "So sorry you did not enter in a proper search term, author name, title, or genre, here is our full catalog though";
+		 $query ="select * from book ";
+		$result = mysqli_query($myconnection, $query);
+	 }
 	}
    }
+   
   echo "<form method = 'post' action = 'cart.php' >";
   echo "<table>";
+echo "<tr><td> BOOK_ID </td>";
+echo "<td> Published </td>";
+echo "<td> Genre </td>";
+echo "<td> Title </td>";
+echo "<td> ISBN </td>";
+echo "<td> Condition </td>";
+echo "<td> Price </td>";
+echo "<td> Type </td>";
+echo "<td> Total Rating </td></tr>";
 
 
   while($row = mysqli_fetch_array($result)){

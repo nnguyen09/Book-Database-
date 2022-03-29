@@ -1,12 +1,14 @@
 <?php
 session_start();
 $email =$_SESSION['email'];  
+$shipping_mode = $_POST['shipping_types'];
 $myconnection = mysqli_connect('localhost', 'root', '') or die ('Could not connect: ' . mysql_error());
 $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
 $cartq="select cart_id from cart where user_email = '$email'";
 $rcart = mysqli_query($myconnection, $cartq) or die ('Query failed: ' . mysql_error());  
 $cart = mysqli_fetch_array ($rcart, MYSQLI_ASSOC)["cart_id"];
-
+$change_modes = "update cart set shipping_type = '$shipping_mode' where cart_id = '$cart'";
+$r1 = mysqli_query($myconnection, $change_modes);
 
 echo "select a payment method and add shipping method and Confirm your order ";
 echo "
@@ -50,7 +52,7 @@ echo "
 
 ";
 	$books_purchased_from_cart = "select book_id from hold where cart_id = '$cart'";
-	echo $books_purchased_from_cart;
+
 	echo "<br>";
 	$running_total = 0;
 	$result1 = mysqli_query($myconnection, $books_purchased_from_cart);

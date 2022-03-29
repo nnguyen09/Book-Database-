@@ -6,7 +6,7 @@ $myconnection = mysqli_connect('localhost', 'root', '')
 
 $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
 $new_member_status = $_POST['member'];
-echo "<br>".$new_member_status;
+//echo "<br>".$new_member_status;
 $q_name_phone = "select * from member where email = '$email'";
 $result= mysqli_query($myconnection, $q_name_phone);
 while($row = mysqli_fetch_array($result)){
@@ -18,11 +18,14 @@ while($row = mysqli_fetch_array($result)){
 if($new_member_status == 'normal_membership'){
     $q_update = "update member set member_fee = '20.00' where email = '$email'";
     $r_update = mysqli_query($myconnection,$q_update);
+	echo "Upgraded to normal membership!!";
 }
 
 if($new_member_status == 'premium_membership'){
     $q_update = "update member set member_fee = '50.00' where email = '$email'";
     $r_update = mysqli_query($myconnection,$q_update);
+	echo "Upgraded to premium membership!!";
+
 }
 
 if($new_member_status == 'Cancel_membership'){
@@ -30,8 +33,10 @@ if($new_member_status == 'Cancel_membership'){
     $result = mysqli_query($myconnection,$qu3);
     $q_delete = "delete from member where email = '$email'";
     $r_delete = mysqli_query($myconnection, $q_delete);
+
+	echo "Cancled membership ";
+
 }
-echo "Updated membership!!";
 
 echo "<form action ='bookstore.php' method= 'post'>";
 echo "<table>";

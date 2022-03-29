@@ -13,12 +13,20 @@ if(mysqli_num_rows($r1) == 0)
 {
 	$q2 = "insert into shipping_modes(shipping_type, shipping_cost) values('$type', '$cost')";
 	$r2 = mysqli_query($myconnection, $q2);
+	echo "Created new shipping option '$type' with cost '$cost'";
+
 }
 else
 {
 	$q3 = "update shipping_modes set shipping_cost = '$cost' where shipping_type = '$type'";
 	$r2 = mysqli_query($myconnection, $q3);
+	echo "Updated '$type' shipping to cost '$cost'";
+
 }
 
-header("Location: superuser.php");
+echo "<form action ='bookstore.php' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
 ?>

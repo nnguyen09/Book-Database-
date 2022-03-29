@@ -64,7 +64,7 @@
 						$qfinal2 = "insert into wrote (author_id,book_id) values ('$auid','$bid')";
 						if(mysqli_query($myconnection, $qfinal2)){}
 					}
-					echo "Inserted new books<br>";
+					echo "Added '$btitle' to the library<br>";
 				}
 			}
 else {echo "fail<br>";}

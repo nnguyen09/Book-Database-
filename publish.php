@@ -50,13 +50,13 @@ echo"<form action='update.php' method='post'>
 	<td><input type='text' name='new_price'</td>
 </tr>
 </table>
-<p align='center'><input align ='center' type='submit' value='Publish Book'/></p>
+<p align='center'><input align ='center' type='submit' value='Update Price of Book'/></p>
 </form>";
 echo "<form action ='bookstore.html' method= 'post'>";
 echo "<table>";
 echo "<input type='submit' value='Main Menu' />"; 
 echo "</table>";
 echo "</form>";
-echo "</p>";
+
 
 ?>

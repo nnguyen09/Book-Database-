@@ -20,11 +20,11 @@ session_start();
 
  $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
 
-    echo $email;
-    echo $membership;
+    //echo $email;
+    //echo $membership;
     $qu1 = "INSERT INTO users (email,name) values ('$email' ,'$name')";
 if(mysqli_query($myconnection, $qu1)){
-        echo "Account created succesfully";
+        echo "Account created succesfully<br>";
     }
 else{
     echo "Error1" . $qu1 ."<br>" . mysqli_error($myconnection);
@@ -32,7 +32,7 @@ else{
 
 $qu2 = "INSERT INTO customer (email,name,phone_number) values ('$email' ,'$name','$phone_number')";
 if(mysqli_query($myconnection, $qu2)){
-        echo "Registered as a customer";
+        //echo "Registered as a customer<br>";
     }
 else{
     echo "Error2" . $qu2 ."<br>" . mysqli_error($myconnection);
@@ -48,7 +48,7 @@ do
 $qcart = "insert into cart (cart_id, user_email, item_cost, shipping_type, tax) values ('$cart_id','$email', 0.0, 'standard', 5)";
 if(mysqli_query($myconnection, $qcart))
 {
-        echo "Cart created";
+        //echo "Cart created";
 }
 else{
     echo "Error2" . $qcart ."<br>" . mysqli_error($myconnection);
@@ -59,9 +59,9 @@ if($membership == 'yes'){
     $qu3 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','20.00', '$password')";
     
     if(mysqli_query($myconnection, $qu3)){
-            echo "Registered as a Member";
+            echo "Registered as a Member under '$email'";
 			$_SESSION['email'] = $email;
-            header("Location: bookstore.php");
+            
      
         }
     else{
@@ -73,9 +73,9 @@ if($membership == 'yes'){
 if($membership == 'premium'){
     $qu4 = "INSERT INTO member (email,name,phone_number,member_fee,password) values ('$email' ,'$name','$phone_number','50.00', '$password')";
     if(mysqli_query($myconnection, $qu4)){
-            echo "Registered as a premium member";
+            echo "Registered as a premium member under '$email'";
 			$_SESSION['email'] = $email;
-            header("Location: bookstore.php");
+           
      
         }
     else{
@@ -87,9 +87,9 @@ if($membership == 'premium'){
 if($membership == 'no'){
     $qu5 = "INSERT INTO non_member (email,name,phone_number,password) values ('$email' ,'$name','$phone_number', '$password')";
     if(mysqli_query($myconnection, $qu5)){
-            echo "Registered as a non_member";
+            echo "Registered as a non_member under '$email'";
 			$_SESSION['email'] = $email;
-            header("Location: bookstore.php");
+           
      
         }
     else{
@@ -98,7 +98,11 @@ if($membership == 'no'){
 
 
 }
-
+echo "<form action ='bookstore.php' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
 ?>
 </body>
 </html>

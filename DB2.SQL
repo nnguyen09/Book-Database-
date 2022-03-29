@@ -233,13 +233,13 @@ values
 
 insert into cart(cart_id , user_email,  item_cost, shipping_type , tax)
 values
-(1, 'likhitha@gmail.com', '0.00', 'standard', '3.00'),
-(2, 'nnguyen@gmail.com', '0.00', 'standard', '4.00'),
-(3, 'zackk@gmail.com', '0.00', 'standard', '5.00'),
-(4, 'carolinek@gmail.com', '0.00', 'standard', '5.00'),
-(5, 'stephenk@gmail.com', '0.00', 'standard', '5.00'),
-(6, 'jkrowling@gmail.com', '0.00', 'standard', '5.00'),
-(7, 'admin@gmail.com', '0.00', 'standard', '5.00');
+(1, 'likhitha@gmail.com', '0.00', 'standard', '5'),
+(2, 'nnguyen@gmail.com', '0.00', 'standard', '3'),
+(3, 'zackk@gmail.com', '0.00', 'standard', '1'),
+(4, 'carolinek@gmail.com', '0.00', 'standard', '0'),
+(5, 'stephenk@gmail.com', '0.00', 'standard', '0'),
+(6, 'jkrowling@gmail.com', '0.00', 'standard', '0'),
+(7, 'admin@gmail.com', '0.00', 'standard', '0');
 
 insert into customer(email,name,phone_number) 
 values 
@@ -283,3 +283,44 @@ values
 ('A003', 3),
 ('A001', 4),
 ('A002', 5);
+
+insert into orders(order_id, order_date) 
+values
+('a00001', '2020-11-11'),
+('a00002', '2021-11-11'),
+('a00003', '2022-11-11');
+
+insert into history(email, order_id)
+values
+('admin@gmail.com', 'a00001'),
+('admin@gmail.com', 'a00002'),
+('admin@gmail.com', 'a00003');
+
+insert into grab(order_id, book_id, year_bought)
+values
+('a00001', 1 ,'2020-11-11'),
+('a00002', 2 ,'2021-11-11'),
+('a00003', 3 ,'2022-11-11'),
+('a00001', 1 ,'2020-11-11'),
+('a00002', 2 ,'2021-11-11'),
+('a00003', 3 ,'2022-11-11'),
+('a00001', 3 ,'2020-11-11'),
+('a00002', 2 ,'2021-11-11'),
+('a00003', 1 ,'2022-11-11');
+
+insert into payment(card_number, card_type, exp_date, cvv_code, billing_address)
+values
+('44444444444', 'credit', '2027-11-11', 1234, '123 fake street, USA');
+
+insert into purchased(amount_pay, order_id, card_number)
+values
+(200,'a00001', '44444444444'),
+(100,'a00002', '44444444444'),
+(150,'a00003', '44444444444');
+
+
+insert into rate(cus_comment, rating, book_id, email)
+values
+('This book is great!', 5, 1, 'admin@gmail.com'),
+('This book is okay', 3, 2, 'admin@gmail.com'),
+('This book is bad!', 1, 3, 'admin@gmail.com');

@@ -49,7 +49,7 @@ if($new_member_status == 'premium'){
 if($new_member_status == 'no'){
     echo "You already arent a member fun guy";    
 }
-echo "Updated membership!!";
+
 
 echo "<form action ='bookstore.php' method= 'post'>";
 echo "<table>";

@@ -41,7 +41,7 @@ echo "</table>";
 echo "<br><br>";
 echo "<p align ='center'><input type='submit' value='Remove'/></p>"; 
 echo "</form>";
-echo "<form action ='confirm_purchase.php' method= 'post'>";
+echo "<form action ='choose_shipping.php' method= 'post'>";
 echo "<table>";
   echo "<input type='submit' value='Confirm Purchase' />"; 
 echo "</table>";
