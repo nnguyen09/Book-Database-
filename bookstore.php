@@ -7,16 +7,10 @@
 <h2 align = "center">Home page</h2>
 
 <?php
+//Starting session
 session_start();
-
-
-/*
-add an if statement that checks if $_SESSION['email'] = admin_email
-and if it does add
-
-echo <td align='center'> <a href='change_shipping_costs.php' >Change Shipping Costs</a></td> 
-into the href options
-*/
+//Getting the session email, will be uses to check if the email is equal to the admin email
+$admin_check = $_SESSION['email'];
 echo " <html>
 <head>
   <title>Home page</title>
@@ -28,16 +22,23 @@ echo " <html>
       <table border='1' width='100%' cellpadding='5' align='center'> 
         <tr>
           <td><!--<img src='logo.png'>--> </td> 
-          <td colspan='5' align='center'><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
+          <td colspan='8' align='center'><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
         </tr>
-        <tr>
-          <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS <input type ='text' name ='year'/><input type ='submit'/></form></a></td> 
-          <td align='center'> <a href='login.php' >LOGIN/SIGNUP</a></td> 
-		   <td align='center'><a href='catalog.php' >CATALOGUE</a></td> 
-          <td align='center' ><a href='cart.php' >CART</a></td>
-          <td align='center'> <a href='task4_searchbook.html' >SEARCH</a></td>
-          <td align='center' ><a href='publish.php' >ADD BOOKS</a></td>
-		  <td align='center' ><a href='logout.php' >Logout</a></td>
+        <tr>";
+		
+//Checks to see if the email is the admin email, if it is then it adds a button that only the admin user has access to that lets them edit or add new shipping types
+if($admin_check == 'admin@gmail.com'){echo "<td align='center'> <a href='superuser.php' >Secret Super User Button</a></td> ";}
+
+//The following buttons are similar to bookstore.html up till catalog, then the new ones are buttons for viewing cart, edditing account, checking history, adding rating to books youve bought, and logging out, in that order
+echo" <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS (by year) <input type ='text' name ='year'/><input type ='submit' value = 'Search'/></form></a></td> 
+          <td align='center'> <a><form method = 'POST' action = 'task4_searchbook.php'>Book Search <input type ='text' name ='search'/><input type ='submit' value = 'Search'/></form></a></td> 
+          <td align='center'> <a><form method = 'POST' action = 'reviews_of_book.php'>Getting User Ratings <input type ='text' name ='title'/><input type ='submit' value = 'Search'/></form></a></td> 
+		  <td align='center'><a href='catalog.php' >CATALOGUE</a></td>
+          <td align='center' ><a href='view_cart.php' >CART</a></td>
+          <td align='center' ><a href='account.php' >ACCOUNT</a></td>
+          <td align='center' ><a href='history.php' >ORDER HISTORY</a></td>
+          <td align='center' ><a href='rating.php' >RATE BOOKS ORDERED</a></td>
+		  <td align='center' ><a href='logout.php' >LOGOUT</a></td>
         </tr>
       </table>
     </frame>
@@ -55,31 +56,28 @@ echo " <html>
 ";
 ?>
 <?php 
-//echo "before start<br>";
-
-//echo "after start<br>";
-echo $_SESSION["email"];
-
-//echo $_SESSION['email'];
-
+//Final wall to prevent people who arent logged in from getting to the main website
+//If there is no session[email] then that means they arent logged in and it will send them to bookstore.html
 if(!isset($_SESSION["email"])){
   header("bookstore.html");
 }
 
+//Since login passes info using header() we have to use the GET array to access what it passed
 if($_GET){
+		//Sets user email to what was passed
         $user_email = $_GET['email'];
-        //$password = $_GET['password'];
-         
+        
+		//Connects to database
         $myconnection = mysqli_connect('localhost', 'root', '') 
         or die ('Could not connect: ' . mysql_error());
-      
         $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
-       
-       // $queryAuthor = "Select title from book where book_id in(select book_id from wrote where author_id in(select author_id from author where email ='"mysqli_real_escape_string($myconnection, $user_email) . "'";
+		
+		//Query that gets the name of that user
         $query1 = "SELECT name FROM users where email = '" .mysqli_real_escape_string($myconnection, $user_email) . "'";
-        
         $result1 = mysqli_query($myconnection, $query1) or die ('Query failed: ' . mysql_error());
-        if(mysqli_num_rows($result1)!=0){
+        
+		//Says hello to the user
+		if(mysqli_num_rows($result1)!=0){
             while ($row = mysqli_fetch_array ($result1, MYSQLI_ASSOC)) {    
                 echo "Hello, " .$row["name"];
                 echo "&nbsp;&nbsp;&nbsp;";
@@ -91,44 +89,49 @@ if($_GET){
     else{
         "Could not get email";
     }
-
 ?>
 
 
 
 <?php
- 
+
+//Sets a variable to the email passed, this one will be used to see if they are an author
  $author_email = $_GET['email'];
-  $myconnection = mysqli_connect('localhost', 'root', '') 
-    or die ('Could not connect: ' . mysql_error());
+ 
+//Connecting to database
+$myconnection = mysqli_connect('localhost', 'root', '') 
+or die ('Could not connect: ' . mysql_error());
+$mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
 
-  $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
+//Getting name of author
+$e1 = "SELECT name FROM author where email = '" .mysqli_real_escape_string($myconnection, $author_email) . "'";
+$re1 = mysqli_query($myconnection, $e1);
 
-  $e1 = "SELECT name FROM author where email = '" .mysqli_real_escape_string($myconnection, $author_email) . "'";
-  //echo "$e1";
+//If that query returns anything but a zero it means that the logged in user name is in the author table, meaing this customer is an author
+if(mysqli_num_rows($re1) != 0)
+{
 
-  //$q1 = "Select * from member where email = '$author_email' ";
-  //echo "$q1";
-  $re1 = mysqli_query($myconnection, $e1);
-
-
-
-  if(mysqli_num_rows($re1) != 0){
-    echo "hello";
+	//Query that gets all the books that that author has made
     $a_query = "SELECT * FROM book where book_id in (Select book_id from wrote where author_id in ( SELECT  author_id FROM author where email = '" .mysqli_real_escape_string($myconnection, $author_email) . "' ))";
-  $a_result = mysqli_query($myconnection, $a_query) or die ('Query failed: ' . mysql_error());
-  $a_counter = 0;
+	$a_result = mysqli_query($myconnection, $a_query) or die ('Query failed: ' . mysql_error());
 
-  echo "<form method = 'post' action = 'cart.php' >";
-  echo "<table>";
+	//Start of output form that outputs books and allows them to be added to cart
+	echo "<form method = 'post' action = 'cart.php' >";
+	echo "<table>";
+	echo "<tr><td> BOOK_ID </td>";
+	echo "<td> Published </td>";
+	echo "<td> Genre </td>";
+	echo "<td> Title </td>";
+	echo "<td> ISBN </td>";
+	echo "<td> Condition </td>";
+	echo "<td> Price </td>";
+	echo "<td> Type </td>";
+	echo "<td> Total Rating </td></tr>";
 
-
-  while($row = mysqli_fetch_array($a_result)){
+	//Iterates through each books atributes and outputs them, sets book_id to the value of a quantifier so they can add that many of that book id to their cart(hold table)
+	while($row = mysqli_fetch_array($a_result))
+	{
     $book_counter = htmlspecialchars($row['book_id']);
-  
-    // to make it shows only author books add a query that checks author email to check if he is a customer
-    // and the book associated with his author_id and then add that to cart
-    
     echo "<tr><td>". htmlspecialchars($row['book_id']). "</td>";
     echo "<td>". htmlspecialchars($row['year']). "</td>";
     echo "<td>". htmlspecialchars($row['genre']). "</td>";
@@ -148,33 +151,38 @@ if($_GET){
   </select></td>";
     echo "</tr>";
 
+	}
+	echo "</table>";
+	echo "<br><br>";
+	echo "<p align ='center'><input type='submit' value='Add to cart'/></p>"; 
+	echo "</form>";
+	//end of output
 }
-echo "</table>";
-echo "<br><br>";
-echo "<p align ='center'><input type='submit' value='Add to cart'/></p>"; 
-echo "</form>";
+//Else it means there is zero results, meaning they are not an author and should just output the catalog as normal
+else
+{
+	//Getting all books
+	$query = 'SELECT * FROM book';
+	$result = mysqli_query($myconnection, $query) or die ('Query failed: ' . mysql_error());
+	
+	//Start of form that outputs all books
+	echo "<form method = 'post' action = 'cart.php' >";
+	echo "<table>";
+	echo "<tr><td> BOOK_ID </td>";
+	echo "<td> Published </td>";
+	echo "<td> Genre </td>";
+	echo "<td> Title </td>";
+	echo "<td> ISBN </td>";
+	echo "<td> Condition </td>";
+	echo "<td> Price </td>";
+	echo "<td> Type </td>";
+	echo "<td> Total Rating </td></tr>";
 
-echo "<br><br>Successful";
-
-  }
-
-  else{
-  $query = 'SELECT * FROM book';
-  $result = mysqli_query($myconnection, $query) or die ('Query failed: ' . mysql_error());
-  $counter = 0;
-
-     // echo 'name'.$counter;
-
-  echo "<form method = 'post' action = 'cart.php' >";
-  echo "<table>";
-
-
-  while($row = mysqli_fetch_array($result)){
+	//Iterates through each books atributes and outputs them, sets book_id to the value of a quantifier so they can add that many of that book id to their cart(hold table)
+	while($row = mysqli_fetch_array($result))
+	{
     $bookcounter = htmlspecialchars($row['book_id']);
   
-    // to make it shows only author books add a query that checks author email to check if he is a customer
-    // and the book associated with his author_id and then add that to cart
-    
     echo "<tr><td>". htmlspecialchars($row['book_id']). "</td>";
     echo "<td>". htmlspecialchars($row['year']). "</td>";
     echo "<td>". htmlspecialchars($row['genre']). "</td>";
@@ -193,159 +201,13 @@ echo "<br><br>Successful";
   <option value='5'>5</option>
   </select></td>";
     echo "</tr>";
-    
-
+	}
+	echo "</table>";
+	echo "<br><br>";
+	echo "<p align ='center'><input type='submit' value='Add to cart'/></p>"; 
+	echo "</form>";
+	//end of form
 }
-echo "</table>";
-echo "<br><br>";
-echo "<p align ='center'><input type='submit' value='Add to cart'/></p>"; 
-echo "</form>";
-  }
-
-
-  //echo "$re1";
-  //echo "hello1";
- /* if(mysqli_num_rows($re1) != ''){
-    echo "hello2";
-    }
-    else{
-      echo"hello3";
-    }    
-   */    
-     	/*echo "&nbsp;&nbsp;&nbsp;Year:";
-	echo $row['year'];
-	echo "&nbsp;&nbsp;&nbsp;Genre:";
-	echo $row['genre'];
-	echo "&nbsp;&nbsp;&nbsp;Title:";
-	echo $row['title'];
-	echo "&nbsp;&nbsp;&nbsp;ISBN:";
-	echo $row['isbn'];
-	echo "&nbsp;&nbsp;&nbsp;Book Condition:";
-	echo $row['book_condition'];
-	echo "&nbsp;&nbsp;&nbsp;Price:";
-	echo $row['price'];
-	echo "&nbsp;&nbsp;&nbsp;Book Types:";
-	echo $row['book_type'];
-	echo "&nbsp;&nbsp;&nbsp;Total Rating:";
-	echo $row['total_rating'];
-	echo "&nbsp;&nbsp;&nbsp;";
-	echo "<br>";*/
-  
-  
 ?>
 </body>
 </html>
-
-<!-- this php will lead to a page that has a login, and register
-form of the type 
-<h3>Register</h3>
-<form action="register.php" method="post">
-<table border="0">
-<tr bgcolor="#cccccc">
-  <td width="150">Item</td>
-  <td width="15">Quantity</td>
-</tr>
-<tr>
-  <td>Email</td>
-  <td align="left"><input type="text" name="reg_email" size="3" maxlength="3"/></td>
-</tr>
-<tr>
-  <td>Password</td>
-  <td align="left"><input type="text" name="reg_passowrd" size="3" maxlength="3"/></td>
-</tr>
-<tr>
-  <td colspan="2" align="center"><input type="submit" value="Register"/></td>
-</tr>
-</table>
-</form>
-
-login will lead directly to an accountmanager.php which will 
-be an important junction point to handle queries 1,3,6, 7, and possibly 8 but unsure on that one.
-register will lead to a simple registration page, which when completed will lead to the same 
-accountmanager page.
--->
-<!--
-<form action="login.php" method="post">
-<table>
-<tr>
-<td colspan="2" align="center"><input type="submit" value="Login/Register"/></td>
-</tr>
-</table>
-</form>
--->
-
-<!-- this php will lead to a list of all books currently in the database
-this page should let you add books of x quantity to your cart, 
--->
-        
-
-<!--<h3>Task 2</h3>
-<form action="task2.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 3</h3>
-<form action="task3.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 4</h3>
-<form action="task4.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 5</h3>
-<form action="task5.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 6</h3>
-<form action="task6.php" method="post">
-<table>
-    
-</table>
-</form>
-
-
-<h3>Task 7</h3>
-<form action="task7.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 8</h3>
-<form action="task8.php" method="post">
-<table>
-    
-</table>
-</form>
-
-
-<h3>Task 9</h3>
-<form action="task9.php" method="post">
-<table>
-    
-</table>
-</form>
-
-<h3>Task 10</h3>
-<form action="task10.php" method="post">
-<table>
-    
-</table>
-</form>
--->
-
-
-
-
-

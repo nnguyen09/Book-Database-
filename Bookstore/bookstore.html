@@ -1,0 +1,41 @@
+<!--Main html page, everything starts from here-->
+
+<html>
+	<head>
+		<title>Home page</title>
+	</head>
+  <body>
+    <font face="Cambria" size="4">
+    <frameset rows="20%,*%">
+      <frame name="home_page">
+        <table border="1" width="100%" cellpadding="5" align="center"> 
+          <tr>
+            <td><!--<img src="logo.png">--> </td> 
+            <td colspan="6" align="center"><b><i>A place of magical discoveries and the rediscovery of past pleasures</i> </b></td>
+          </tr>
+          <tr>
+            <!---Go to bestseller, if they eneter no year, or a year that does not have a best sellet it shows the best seller of all years-->
+            <td align='center'> <a><form method = 'POST' action = 'bestseller.php'>BEST SELLERS (by year) <input type ='text' name ='year'/><input type ='submit' value = 'Search'/></form></a></td> 
+            <!--Searches book by title, genre, or author-->
+            <td align='center'> <a><form method = 'POST' action = 'task4_searchbook.php'>Book Search <input type ='text' name ='search'/><input type ='submit' value = 'Search'/></form></a></td> 
+			      <!--Search a book by title, shows review of that book, or catalog if there are not reviews-->
+            <td align='center'> <a><form method = 'POST' action = 'reviews_of_book.php'>Getting User Ratings <input type ='text' name ='title'/><input type ='submit' value = 'Search'/></form></a></td> 
+			      <!--Goes to login.php where they can log in, or create a new account-->
+            <td align="center"> <a href="login.php" >LOGIN/SIGNUP</a></td> 
+            <!--allows guests to look at the catalog-->
+            <td align="center"><a href="catalog.php" >CATALOGUE</a></td> 
+            <!--Goes to publsh.php which allows publishers that have ids in our database to put new books on the webstie, as well as change the prices of their books allready in the store-->
+            <td align="center" ><a href="publish.php" >ADD BOOKS</a></td>
+          </tr>
+        </table>
+      </frame>
+          <br><br>
+          <center><b><i>WELCOME TO OUR ONLINE BOOKSTORE</i></b></center>
+          <br><br>
+      <frame name="desc_page">
+      </frame>
+	    
+    </frameset>  
+    </font>
+  </body>
+</html>

@@ -1,7 +1,3 @@
-<?php
-  // create short variable names
-  $date = date('H:i, jS F Y');
-?>
 <html>
 <head>
   <title>Current Bookstore Catalog</title>
@@ -9,23 +5,35 @@
 <body>
 <h1>Current Bookstore Catalog</h1>
 <?php
- 
-  $myconnection = mysqli_connect('localhost', 'root', '') 
-    or die ('Could not connect: ' . mysql_error());
+//Start session
+session_start();
 
-  $mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
-  
-  $query = 'select * from book';
-  $result = mysqli_query($myconnection, $query) or die ('Query failed: ' . mysql_error());
-  $counter = 0;
-  
- // echo 'name'.$counter;
+//Connecting to database
+$myconnection = mysqli_connect('localhost', 'root', '') 
+or die ('Could not connect: ' . mysql_error());
+$mydb = mysqli_select_db ($myconnection, 'bookstore') or die ('Could not select database');
 
-  echo "<form method = 'post' action = 'cart.php' >";
-  echo "<table>";
 
+//getting all books
+$query = 'select * from book';
+$result = mysqli_query($myconnection, $query) or die ('Query failed: ' . mysql_error());
+
+//Start of output form that outputs all books and allows the user to add to cart
+echo "<form method = 'post' action = 'cart.php' >";
+echo "<table>";
+
+echo "<tr><td> BOOK_ID </td>";
+echo "<td> Published </td>";
+echo "<td> Genre </td>";
+echo "<td> Title </td>";
+echo "<td> ISBN </td>";
+echo "<td> Condition </td>";
+echo "<td> Price </td>";
+echo "<td> Type </td>";
+echo "<td> Total Rating </td></tr>";
+//Iterates through each books atributes and outputs them, sets book_id to the value of a quantifier so they can add that many of that book id to their cart(hold table)
   while($row = mysqli_fetch_array($result)){
-	$counter +=1;
+
 	$bookcounter = htmlspecialchars($row['book_id']);
 	
 	echo "<tr><td>". htmlspecialchars($row['book_id']). "</td>";
@@ -46,46 +54,34 @@
 <option value='5'>5</option>
 </select></td>";
 	echo "</tr>";
-             
-	/*echo "&nbsp;&nbsp;&nbsp;Year:";
-	echo $row['year'];
-	echo "&nbsp;&nbsp;&nbsp;Genre:";
-	echo $row['genre'];
-	echo "&nbsp;&nbsp;&nbsp;Title:";
-	echo $row['title'];
-	echo "&nbsp;&nbsp;&nbsp;ISBN:";
-	echo $row['isbn'];
-	echo "&nbsp;&nbsp;&nbsp;Book Condition:";
-	echo $row['book_condition'];
-	echo "&nbsp;&nbsp;&nbsp;Price:";
-	echo $row['price'];
-	echo "&nbsp;&nbsp;&nbsp;Book Types:";
-	echo $row['book_type'];
-	echo "&nbsp;&nbsp;&nbsp;Total Rating:";
-	echo $row['total_rating'];
-	echo "&nbsp;&nbsp;&nbsp;";
-	echo "<br>";*/
   }
   echo "</table>";
   echo "<br><br>";
   echo "<input align ='center' type='submit' value='Add to cart'/>"; 
   echo "</form>";
+//end of the output form
+  
+  
+//Login check
+if($email = $_SESSION['email']) 
+{
+echo "<form action ='bookstore.php' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
+echo "</p>";
+}
+else
+{
+echo "<form action ='bookstore.html' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
+echo "</p>";
+}
+  
 ?>
-<!-- This form should 
-<h2>Order Books Based Off Order ID and Quantity Desired</h2>
-<form action="move_to_cart.php" method="post">
-<tr>
-  <td>List Of IDs</td>
-  <td align="left"><input type="text" name="idLst" size="20" maxlength="255"/></td>
-</tr>
-<tr>
-  <td>List of Quantites</td>
-  <td align="left"><input type="text" name="qtLst" size="20" maxlength="3"/></td>
-</tr>
-<tr>
-  <td colspan="2" align="center"><input type="submit" value="add to cart"/></td>
-</tr>
-</table>
-</form>-->
 </body>
 </html>

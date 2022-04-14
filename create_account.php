@@ -1,4 +1,5 @@
 <html>
+  <!-- this file is used to create account for a new user and adds the input information and stores the data into the database-->
 <head>
   <title>Create account</title>
 </head>
@@ -39,4 +40,11 @@ echo "
 </html>
 
 ";
+
+echo "<form action ='bookstore.html' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
+echo "</p>";
 ?>

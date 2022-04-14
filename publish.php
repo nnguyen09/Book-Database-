@@ -1,4 +1,5 @@
 <?php
+//This form lets the publisher add a new book to the store, requires publisher id, author id, title of book, genre, and isbn, price is fixed at first but they can change it in form 2
 echo "<h3 align='center'><i>Publisher Adds a Book</i></h3>";
 echo"<form action='task2.php' method='post'>
 <table align='center'>
@@ -32,4 +33,31 @@ echo"<form action='task2.php' method='post'>
 </table>
 <p align='center'><input align ='center' type='submit' value='Publish Book'/></p>
 </form>";
+
+//Form 2 lets the publisher update the price of a book they have allready published
+echo "<h3 align='center'><i>Publisher Updates Price of a Book</i></h3>";
+echo"<form action='update.php' method='post'>
+<table align='center'>
+<tr>
+	<td>Publisher ID</td>
+	<td><input type='text' name='publisher_id'  minlength='3' required/></td>
+</tr>
+<tr>
+	<td>Title</td>
+	<td><input type='text' name='book_title'  minlength='3' required/></td>
+</tr>
+<tr>
+	<td>New price</td>  
+	<td><input type='text' name='new_price'</td>
+</tr>
+</table>
+<p align='center'><input align ='center' type='submit' value='Update Price of Book'/></p>
+</form>";
+echo "<form action ='bookstore.html' method= 'post'>";
+echo "<table>";
+echo "<input type='submit' value='Main Menu' />"; 
+echo "</table>";
+echo "</form>";
+
+
 ?>
